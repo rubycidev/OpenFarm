@@ -1,6 +1,21 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= "test"
+if ENV["RUBY_CI_SECRET_KEY"]
+  require "rspec/core/runner"
+  require "ruby_ci/runner_prepend"
 
+  class RSpec::Core::ExampleGroup
+    def self.filtered_examples
+      rubyci_scoped_ids = Thread.current[:rubyci_scoped_ids] || ""
+
+      RSpec.world.filtered_examples[self].filter do |ex|
+        rubyci_scoped_ids == "" || /^#{rubyci_scoped_ids}($|:)/.match?(ex.metadata[:scoped_id])
+      end
+    end
+  end
+
+  RSpec::Core::Runner.prepend(RubyCI::RunnerPrepend)
+end
 # We provide an empty google maps api key for the tests to complete successfully.
 # We largely set this here so that tests from travisCI won't fail with this
 # variable missing.
