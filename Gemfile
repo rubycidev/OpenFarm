@@ -41,6 +41,7 @@ gem 'rails_admin'
 gem 'rollbar'
 gem 'sass-rails'
 gem 'utf8-cleaner'
+gem "ruby_ci", github: "RubyCI/ruby_ci_gem", branch: "bugfix/188183739-increase-ruby-support"
 
 # Asset management using bower
 # https://rails-assets.org/
