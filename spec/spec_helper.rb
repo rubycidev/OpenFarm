@@ -1,5 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= "test"
+require "ruby_ci"
 if ENV["RUBY_CI_SECRET_KEY"]
   require "rspec/core/runner"
   require "ruby_ci/runner_prepend"
