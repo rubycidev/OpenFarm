@@ -41,7 +41,7 @@ gem 'rails_admin'
 gem 'rollbar'
 gem 'sass-rails'
 gem 'utf8-cleaner'
-gem "ruby_ci"
+
 
 # Asset management using bower
 # https://rails-assets.org/
@@ -100,6 +100,7 @@ group :test do
   gem 'test-unit'
   gem 'vcr'
   gem 'webmock'
+  gem "ruby_ci"
 end
 
 group :production, :staging do
